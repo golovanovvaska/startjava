@@ -1,3 +1,5 @@
+package lesson_2_3.guess;
+
 public class Player {
 
     private int number;

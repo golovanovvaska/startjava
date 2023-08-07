@@ -1,3 +1,5 @@
+package lesson_2_3.person;
+
 public class Person {
 
     String gender = "male";
