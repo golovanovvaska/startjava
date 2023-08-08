@@ -25,7 +25,6 @@ public class GuessNumber {
                break;
            }
         }
-        
     }
 
     private boolean checkNumber(Player player) {
@@ -34,7 +33,8 @@ public class GuessNumber {
         if (player.getNumber() == compNumber) {
             System.out.println(player.getName() + " победил");
             return true;
-        } else if (player.getNumber() > compNumber) {
+        }
+        if (player.getNumber() > compNumber) {
             System.out.println("Число " + player.getNumber() + " больше того, что загадал компьютер");
         } else {
             System.out.println("Число " + player.getNumber() + " меньше того, что загадал компьютер");
