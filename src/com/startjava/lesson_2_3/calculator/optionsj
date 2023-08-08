@@ -1,2 +1,2 @@
--cp ../../../out
-lesson_2_3.calculator.CalculatorTest
+-cp ../../../../../out
+com.startjava.lesson_2_3.calculator.CalculatorTest
