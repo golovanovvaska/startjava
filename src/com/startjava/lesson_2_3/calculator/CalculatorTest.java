@@ -20,13 +20,12 @@ public class CalculatorTest {
             System.out.println("Результат: " + calculator.getNum1() + " " + calculator.getOperation() + " "
                     + calculator.getNum2() + " = " + calculator.calculate());
 
-            while (true) {
+            do {
                 System.out.print("Хотите продолжить вычисления? [yes/no]: ");
                 answer = scanner.next();
-                if (answer.equals("yes") || answer.equals("no")) {
-                    break;
-                }
-            }
+            } while (!answer.equals("yes") && !answer.equals("no"));
+
+
         } while (answer.equals("yes"));
         scanner.close();
     }

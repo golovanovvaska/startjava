@@ -1,5 +1,5 @@
-package lesson_1.final;
 
+package lesson_1;
 public class MyFirstGame {
 
     public static void main(String[] args) {
