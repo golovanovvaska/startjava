@@ -4,72 +4,95 @@ public class ArraysTheme {
 
     public static void main(String[] args) {
         System.out.print("1. Реверс значений массива\n");
-        int[] arr1 = {1, 5, 4, 2, 6, 3, 7};
-        int[] copyArr1 = new int[7];
-        for (int i = 0; i < arr1.length; i++) {
-            copyArr1[i] = arr1[i];
-        }
-        for (int i = 0; i < arr1.length; i++) {
-            arr1[i] = copyArr1[copyArr1.length - 1 - i];
-        }
-        System.out.print("До реверса: ");
-        printArray(copyArr1);
-        System.out.print("После реверса: ");
-        printArray(arr1);
+        invert();
 
         System.out.print("\n2. Произведение элементов массива\n");
-        int[] arr2 = new int[10];
-        for (int i = 0; i <= 9; i++) {
-            arr2[i] = i;
-        }
-        int result = 1;
-        for (int i = 1; i < 9; i++) {
-            result *= arr2[i];
-            String operation = (i == 8) ? " = " : " * ";
-            System.out.print(arr2[i] + operation);
-        }
-        System.out.print(result);
+        multiply();
 
         System.out.print("\n\n3. Удаление элементов массива\n");
-        double[] arr3 = new double[15];
-        double[] copyArr3 = new double[15];
-        for (int i = 0; i < arr3.length; i++) {
-            arr3[i] = Math.random();
-            copyArr3[i] = arr3[i];
+        delete();
+
+        System.out.print("\n\n4. Вывод алфавита лесенкой\n");
+        printTheAlphabet();
+
+        System.out.print("\n\n5. Заполнение массива уникальными числами\n");
+        fillAnArrayWithUniqueNumbers();
+    }
+
+    public static void invert() {
+        int[] numbers = {1, 5, 4, 2, 6, 3, 7};
+        System.out.print("До реверса: ");
+        printArray(numbers);
+        int length = numbers.length;
+        for (int i = 0; i < length / 2; i++) {
+            int temp = numbers[i];
+            numbers[i] = numbers[length - i - 1];
+            numbers[length - i - 1] = temp;
         }
-        int avIndex = arr3.length / 2;
+        System.out.print("После реверса: ");
+        printArray(numbers);
+    }
+
+    public static void multiply() {
+        int[] numbers = new int[10];
+        int length = numbers.length;
+        for (int i = 0; i <= length - 1; i++) {
+            numbers[i] = i;
+        }
+        int result = 1;
+        for (int i = 1; i < length - 1; i++) {
+            result *= numbers[i];
+            String operation = (i == length - 2) ? " = " : " * ";
+            System.out.print(numbers[i] + operation);
+        }
+        System.out.print(result);
+    }
+
+    public static void delete() {
+        double[] realNumbers = new double[15];
+        int length = realNumbers.length;
+        for (int i = 0; i < length; i++) {
+            realNumbers[i] = Math.random();
+        }
+        printArrayInTwoLines(realNumbers);
+        int avIndex = length / 2;
         int counter = 0;
-        for (int i = 0; i < arr3.length; i++) {
-            if (arr3[i] > arr3[avIndex]) {
-                arr3[i] = 0;
+        for (int i = 0; i < length; i++) {
+            if (realNumbers[i] > realNumbers[avIndex]) {
+                realNumbers[i] = 0;
                 counter++;
             }
         }
-        printArrayInTwoLines(arr3);
-        printArrayInTwoLines(copyArr3);
+        printArrayInTwoLines(realNumbers);
         System.out.print("Количество обнуленных ячеек: " + counter);
+    }
 
-        System.out.println("\n\n4. Вывод алфавита лесенкой\n");
-        char[] arr4 = new char[26];
-        for (int i = 0; i < arr4.length; i++) {
-            arr4[i] = (char) (65 + i);
+    public static void printTheAlphabet() {
+        char[] letters = new char[26];
+        int length = letters.length;
+        for (int i = 0; i < length; i++) {
+            letters[i] = (char) (65 + i);
         }
-        for (int i = 0; i <= arr4.length; i++) {
+        for (int i = 0; i <= length; i++) {
             for (int j = 0; j < i; j++) {
-                System.out.print(arr4[arr4.length - 1 - j]);
+                System.out.print(letters[length - 1 - j]);
             }
-            System.out.println();
+            if (i != 0) {
+                System.out.println();
+            }
         }
+    }
 
-        System.out.println("\n\n5. Заполнение массива уникальными числами\n");
-        int[] arr5 = new int[30];
-        for (int i = 0; i < arr5.length; i++) {
+    public static void fillAnArrayWithUniqueNumbers() {
+        int[] uniqueNumbers = new int[30];
+        int length = uniqueNumbers.length;
+        for (int i = 0; i < length; i++) {
             boolean isUnique;
             do {
-                arr5[i] = (int) (Math.random()*(100 - 60)) + 60;
+                uniqueNumbers[i] = (int) (Math.random()*(100 - 60)) + 60;
                 isUnique = true;
                 for (int j = 0; j < i; j++) {
-                    if (arr5[i] == arr5[j]) {
+                    if (uniqueNumbers[i] == uniqueNumbers[j]) {
                         isUnique = false;
                         break;
                     }
@@ -77,28 +100,29 @@ public class ArraysTheme {
             } while (!isUnique);
         }
         int temp;
-        for (int i = arr5.length - 1; i > 0; i--) {
+        for (int i = length - 1; i > 0; i--) {
             for (int j = 0; j < i; j++) {
-                if (arr5[j] > arr5[j + 1]) {
-                    temp = arr5[j];
-                    arr5[j] = arr5[j + 1];
-                    arr5[j + 1] = temp;
+                if (uniqueNumbers[j] > uniqueNumbers[j + 1]) {
+                    temp = uniqueNumbers[j];
+                    uniqueNumbers[j] = uniqueNumbers[j + 1];
+                    uniqueNumbers[j + 1] = temp;
                 }
             }
         }
-        for (int i = 0; i < arr5.length; i++) {
-            if (i % 10 == 0) {
+        for (int i = 0; i < length; i++) {
+            if (i % 10 == 0 && i != 0) {
                 System.out.println();
             }
-            System.out.print(arr5[i] + " ");
+            System.out.print(uniqueNumbers[i] + " ");
         }
     }
 
     private static void printArray(int[] array) {
-        for (int i = 0; i < array.length; i++) {
+        int length = array.length;
+        for (int i = 0; i < length; i++) {
             if (i == 0) {
                 System.out.print("[" + array[i] + ", ");
-            } else if (i == array.length - 1) {
+            } else if (i == length - 1) {
                 System.out.print(array[i] + "]");
             } else {
                 System.out.printf(array[i] + ", ");
@@ -107,7 +131,8 @@ public class ArraysTheme {
         System.out.println();
     }
     private static void printArrayInTwoLines(double[] array) {
-        for (int i = 0; i < array.length; i++) {
+        int length = array.length;
+        for (int i = 0; i < length; i++) {
             if (array[i] == 0){
                 System.out.printf("%5d%s",(int) array[i], " ");
             } else {
