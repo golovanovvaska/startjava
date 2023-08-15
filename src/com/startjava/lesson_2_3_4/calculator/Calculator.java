@@ -1,37 +1,13 @@
-package com.startjava.lesson_2_3.calculator;
+package com.startjava.lesson_2_3_4.calculator;
 
 public class Calculator {
 
-    private int num1;
-    private int num2;
-    private char operation;
-
-    public void setNum1(int num1) {
-        this.num1 = num1;
-    }
-
-    public int getNum1() {
-        return num1;
-    }
-
-    public void setNum2(int num2) {
-        this.num2 = num2;
-    }
-
-    public int getNum2() {
-        return num2;
-    }
-
-    public void setOperation(char operation) {
-        this.operation = operation;
-    }
-
-    public char getOperation() {
-        return operation;
-    }
-
-    public int calculate() {
-        switch(operation) {
+    public double calculate(String mathExpression) {
+        String[] elems = mathExpression.split(" ");
+        int num1 = Integer.parseInt(elems[0]);
+        int num2 = Integer.parseInt(elems[2]);
+        char operation = elems[1].charAt(0);
+        switch (operation) {
             case '+':
                 return num1 + num2;
             case '-':
@@ -39,18 +15,14 @@ public class Calculator {
             case '*':
                 return num1 * num2;
             case '/':
-                return num1 / num2;
+                return (double) num1 / num2;
             case '%':
                 return num1 % num2;
             case '^':
-                int result = 1;
-                for (int i = 1; i <= num2 ; i++) {
-                    result *= num1;
-                }
-                return result;
+                return Math.pow(num1, num2);
             default:
-                System.out.println("Математическая операция не поддерживается");
-                return 0;
+                System.out.println("Ошибка: знак " + operation + " не поддерживается");
+                return Double.MIN_VALUE;
        }
     }
 }
