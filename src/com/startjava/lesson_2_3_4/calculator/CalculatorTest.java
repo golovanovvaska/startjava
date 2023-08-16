@@ -9,7 +9,7 @@ public class CalculatorTest {
         Scanner scanner = new Scanner(System.in);
         String answer = "yes";
 
-        while (answer.equals("yes")) {
+        while (!answer.equals("no")) {
             if (answer.equals("yes")) {
                 System.out.print("Введите математическое выражение: ");
                 String mathExpression = scanner.nextLine();
