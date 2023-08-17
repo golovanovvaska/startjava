@@ -13,11 +13,15 @@ public class CalculatorTest {
                 System.out.print("Введите математическое выражение: ");
                 String mathExpression = scanner.nextLine();
                 double result = Calculator.calculate(mathExpression);
-                String formatPrint = (result == (int) result) ? "%s = %.0f%n%n" : "%s = %.3f%n%n";
-                System.out.printf(formatPrint, mathExpression, result);
+                printResult(result, mathExpression);
             }
             System.out.print("Хотите продолжить вычисления? [yes/no]: ");
             answer = scanner.nextLine();
         }
+    }
+
+    private static void printResult(double result, String mathExpression) {
+        String formatPrint = (result == (int) result) ? "%s = %.0f%n%n" : "%s = %.3f%n%n";
+        System.out.printf(formatPrint, mathExpression, result);
     }
 }
