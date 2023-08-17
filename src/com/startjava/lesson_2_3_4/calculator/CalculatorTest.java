@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class CalculatorTest {
 
     public static void main(String[] args) {
-        Calculator calculator = new Calculator();
         Scanner scanner = new Scanner(System.in);
         String answer = "yes";
 
@@ -13,14 +12,9 @@ public class CalculatorTest {
             if (answer.equals("yes")) {
                 System.out.print("Введите математическое выражение: ");
                 String mathExpression = scanner.nextLine();
-                double result = calculator.calculate(mathExpression);
-                if (result != Double.MIN_VALUE) {
-                    if (result == (int) result) {
-                        System.out.printf("%s = %.0f%n%n", mathExpression, result);
-                    } else {
-                        System.out.printf("%s = %.3f%n%n", mathExpression, result);
-                    }
-                }
+                double result = Calculator.calculate(mathExpression);
+                String formatPrint = (result == (int) result) ? "%s = %.0f%n%n" : "%s = %.3f%n%n";
+                System.out.printf(formatPrint, mathExpression, result);
             }
             System.out.print("Хотите продолжить вычисления? [yes/no]: ");
             answer = scanner.nextLine();

@@ -2,27 +2,42 @@ package com.startjava.lesson_2_3_4.calculator;
 
 public class Calculator {
 
-    public double calculate(String mathExpression) {
+    public static double calculate(String mathExpression) {
         String[] elems = mathExpression.split(" ");
-        int num1 = Integer.parseInt(elems[0]);
-        int num2 = Integer.parseInt(elems[2]);
+        if (elems.length != 3) {
+            throw new RuntimeException("Неправильное математическое выражение");
+        }
+        int num1 = checkNum(elems[0]);
+        int num2 = checkNum(elems[2]);
         char operation = elems[1].charAt(0);
-        switch (operation) {
+        return switch (operation) {
             case '+':
-                return num1 + num2;
+                yield  num1 + num2;
             case '-':
-                return num1 - num2;
+                yield  num1 - num2;
             case '*':
-                return num1 * num2;
+                yield num1 * num2;
             case '/':
-                return (double) num1 / num2;
+                yield (double) num1 / num2;
             case '%':
-                return num1 % num2;
+                yield num1 % num2;
             case '^':
-                return Math.pow(num1, num2);
+                yield Math.pow(num1, num2);
             default:
-                System.out.println("Ошибка: знак " + operation + " не поддерживается");
-                return Double.MIN_VALUE;
-       }
+                throw new RuntimeException("Ошибка: знак " + operation + " не поддерживается");
+       };
+    }
+
+    private static int checkNum(String num) {
+        int number = 0;
+        try {
+            number = Integer.parseInt(num);
+        } catch (RuntimeException e) {
+            System.out.println("Числа должны быть целыми");
+        }
+        if (number <= 0) {
+            throw new RuntimeException("Числа должны быть положительными");
+        }
+        return number;
     }
 }
