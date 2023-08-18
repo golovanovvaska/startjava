@@ -58,26 +58,26 @@ public class BookshelfTest {
 		System.out.println("Введите имя автора");
 		String author = scanner.nextLine();
 		System.out.println("Введите название книги");
-		String name = scanner.nextLine();
+		String NAME = scanner.nextLine();
 		System.out.println("Введите год издания");
 		int year = scanner.nextInt();
 		scanner.nextLine();
-		Book book = new Book(author, name, year);
+		Book book = new Book(author, NAME, year);
 		bookshelf.add(book);
 		pressEnter();
 	}
 
 	private static void find() {
 		System.out.println("Введите наименование книги");
-		String name = scanner.nextLine();
-		System.out.println(bookshelf.find(name).allToString());
+		String NAME = scanner.nextLine();
+		System.out.println(bookshelf.find(NAME).allToString());
 		pressEnter();
 	}
 
 	private static void delete() {
 		System.out.println("Введите наименование книги");
-		String name = scanner.nextLine();
-		bookshelf.delete(name);
+		String NAME = scanner.nextLine();
+		bookshelf.delete(NAME);
 		pressEnter();
 	}
 

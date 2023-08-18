@@ -4,16 +4,16 @@ public class MyFirstGame {
 
     public static void main(String[] args) {
         int computerNumber = 55;
-        int playerNumber = 63;
+        int PlayerNumber = 63;
 
-        while (computerNumber != playerNumber) {
-            System.out.print("Число " + playerNumber);
-            if (computerNumber > playerNumber) {
+        while (computerNumber != PlayerNumber) {
+            System.out.print("Число " + PlayerNumber);
+            if (computerNumber > PlayerNumber) {
                 System.out.print(" меньше");
-                playerNumber++;
+                PlayerNumber++;
             } else {
                 System.out.print(" больше");
-                playerNumber--;
+                PlayerNumber--;
             }
             System.out.println(" того, что загадал компьютер");
         }

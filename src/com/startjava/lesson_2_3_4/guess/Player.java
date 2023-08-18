@@ -1,53 +1,64 @@
 package com.startjava.lesson_2_3_4.guess;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Player {
 
-    private int[] numbers = new int[10];
-    private String name;
-    private int attemptCounter;
-    private int attempts = 10;
+    private final int ATEMPTS = 10;
+    private final int[] NUMBERS = new int[ATEMPTS];
+    private final String NAME;
+    private int currentAttempt;
+    private int score;
 
     public Player(String name) {
-        this.name = name;
+        NAME = name;
     }
 
     public void addNumber(int number) {
-        numbers[attemptCounter] = number;
-        attemptCounter++;
-        attempts--;
+        Scanner scanner = new Scanner(System.in);
+        if (number >= 1 && number <= 100) {
+            NUMBERS[currentAttempt] = number;
+            currentAttempt++;
+        } else {
+            System.out.println("Введите число от 1 до 100");
+            addNumber(scanner.nextInt());
+        }
     }
 
     public int getNumber() {
-        return numbers[attemptCounter-1];
+        return NUMBERS[currentAttempt - 1];
     }
 
     public String getName() {
-        return name;
+        return NAME;
     }
 
-    public int getAttemptCounter() {
-        return attemptCounter;
+    public int getCurrentAttempt() {
+        return currentAttempt;
     }
 
-    public int getAttempts() {
-        return attempts;
+    public int getAtempts() {
+        return ATEMPTS;
+    }
+
+    public void addScore() {
+        score++;
+    }
+
+    public int getScore() {
+        return score;
     }
 
     public int[] getAll() {
-        return Arrays.copyOf(numbers, attemptCounter);
+        return Arrays.copyOf(NUMBERS, currentAttempt);
     }
 
-    public void eracePlayer() {
-        fillNumbers();
-        attemptCounter = 0;
-        attempts = 10;
-    }
-
-    private void fillNumbers() {
-        if (attemptCounter != 0) {
-            Arrays.fill(numbers, 0, attemptCounter, 0);
+    public void clear() {
+        if (currentAttempt != 0) {
+            Arrays.fill(NUMBERS, 0, currentAttempt, 0);
         }
+        currentAttempt = 0;
+        score = 0;
     }
 }

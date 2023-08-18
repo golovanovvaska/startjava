@@ -16,23 +16,23 @@ public class ArraysTheme {
         printAlphabet();
 
         System.out.println("\n\n5. Заполнение массива уникальными числами");
-        fillUniqueNumbers();
+        fillUniqueNUMBERS();
     }
 
     public static void invertValues() {
-        int[] numbers = {1, 5, 4, 2, 6, 3, 7};
+        int[] NUMBERS = {1, 5, 4, 2, 6, 3, 7};
         System.out.print("До реверса: ");
-        print(numbers);
-        int length = numbers.length;
+        print(NUMBERS);
+        int length = NUMBERS.length;
         int avIndex = length / 2;
         for (int i = 0; i < avIndex; i++) {
             length--;
-            int temp = numbers[i];
-            numbers[i] = numbers[length];
-            numbers[length] = temp;
+            int temp = NUMBERS[i];
+            NUMBERS[i] = NUMBERS[length];
+            NUMBERS[length] = temp;
         }
         System.out.print("После реверса: ");
-        print(numbers);
+        print(NUMBERS);
     }
 
     public static void multiplyElements() {
@@ -51,21 +51,21 @@ public class ArraysTheme {
     }
 
     public static void deleteElements() {
-        double[] realNumbers = new double[15];
-        int length = realNumbers.length;
+        double[] realNUMBERS = new double[15];
+        int length = realNUMBERS.length;
         for (int i = 0; i < length; i++) {
-            realNumbers[i] = Math.random();
+            realNUMBERS[i] = Math.random();
         }
-        printInTwoLines(realNumbers);
-        double valueInAvIndex = realNumbers[length / 2];
+        printInTwoLines(realNUMBERS);
+        double valueInAvIndex = realNUMBERS[length / 2];
         int counter = 0;
         for (int i = 0; i < length; i++) {
-            if (realNumbers[i] > valueInAvIndex) {
-                realNumbers[i] = 0;
+            if (realNUMBERS[i] > valueInAvIndex) {
+                realNUMBERS[i] = 0;
                 counter++;
             }
         }
-        printInTwoLines(realNumbers);
+        printInTwoLines(realNUMBERS);
         System.out.print("Количество обнуленных ячеек: " + counter);
     }
 
@@ -85,16 +85,16 @@ public class ArraysTheme {
         }
     }
 
-    public static void fillUniqueNumbers() {
-        int[] uniqueNumbers = new int[30];
-        int length = uniqueNumbers.length;
+    public static void fillUniqueNUMBERS() {
+        int[] uniqueNUMBERS = new int[30];
+        int length = uniqueNUMBERS.length;
         for (int i = 0; i < length; i++) {
             boolean isUnique;
             do {
-                uniqueNumbers[i] = (int) (Math.random()*(100 - 60)) + 60;
+                uniqueNUMBERS[i] = (int) (Math.random()*(100 - 60)) + 60;
                 isUnique = true;
                 for (int j = 0; j < i; j++) {
-                    if (uniqueNumbers[i] == uniqueNumbers[j]) {
+                    if (uniqueNUMBERS[i] == uniqueNUMBERS[j]) {
                         isUnique = false;
                         break;
                     }
@@ -104,10 +104,10 @@ public class ArraysTheme {
         int temp;
         for (int i = length - 1; i > 0; i--) {
             for (int j = 0; j < i; j++) {
-                if (uniqueNumbers[j] > uniqueNumbers[j + 1]) {
-                    temp = uniqueNumbers[j];
-                    uniqueNumbers[j] = uniqueNumbers[j + 1];
-                    uniqueNumbers[j + 1] = temp;
+                if (uniqueNUMBERS[j] > uniqueNUMBERS[j + 1]) {
+                    temp = uniqueNUMBERS[j];
+                    uniqueNUMBERS[j] = uniqueNUMBERS[j + 1];
+                    uniqueNUMBERS[j + 1] = temp;
                 }
             }
         }
@@ -115,7 +115,7 @@ public class ArraysTheme {
             if (i % 10 == 0 && i != 0) {
                 System.out.println();
             }
-            System.out.print(uniqueNumbers[i] + " ");
+            System.out.print(uniqueNUMBERS[i] + " ");
         }
     }
 

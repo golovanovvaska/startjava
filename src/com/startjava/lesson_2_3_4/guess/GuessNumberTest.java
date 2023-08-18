@@ -10,8 +10,10 @@ public class GuessNumberTest {
         String name1 = scanner.nextLine();
         System.out.print("Второй игрок, представьтесь: ");
         String name2 = scanner.nextLine();
+        System.out.print("Третий игрок, представьтесь: ");
+        String name3 = scanner.nextLine();
         System.out.println("Игра началась! У каждого игрока по 10 попыток");
-        GuessNumber game = new GuessNumber(name1, name2);
+        GuessNumber game = new GuessNumber(name1, name2, name3);
         String answer = "yes";
         do {
             if (answer.equals("yes")) {

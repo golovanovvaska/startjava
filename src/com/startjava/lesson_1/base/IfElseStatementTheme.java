@@ -29,11 +29,11 @@ public class IfElseStatementTheme {
             System.out.println("Ваш рост больше или равен 1,8 метра");
         }
 
-        char firstLetterOfName = "Ivan".charAt(0);
+        char firstLetterOfNAME = "Ivan".charAt(0);
 
-        if (firstLetterOfName == 'M') {
+        if (firstLetterOfNAME == 'M') {
             System.out.println("Первая буква вашего имени - М");
-        } else if (firstLetterOfName == 'I') {
+        } else if (firstLetterOfNAME == 'I') {
             System.out.println("Первая буква вашего имени - I");
         } else {
             System.out.println("ХЗ какая буква первая");

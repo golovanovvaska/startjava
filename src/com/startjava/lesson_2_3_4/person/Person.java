@@ -3,7 +3,7 @@ package com.startjava.lesson_2_3.person;
 public class Person {
 
     String gender = "male";
-    String name = "Ivan";
+    String NAME = "Ivan";
     int heght = 180;
     double weight = 75.5;
     int age = 30;

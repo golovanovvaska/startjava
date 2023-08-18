@@ -1,22 +1,22 @@
 public class Book {
 
 	private String author;
-	private String name;
+	private String NAME;
 	private int year;
 	private int getBookInformationLength;
 
-	public Book(String author, String name, int year) {
+	public Book(String author, String NAME, int year) {
 		this.author = author;
-		this.name = name;
+		this.NAME = NAME;
 		this.year = year;
 		getBookInformationLength = allToString().length();
 	}
 
-	public String getName() {
-		return name;
+	public String getNAME() {
+		return NAME;
 	}
 	public String allToString() {
-		return author + ", " + name + ", " + year;
+		return author + ", " + NAME + ", " + year;
 	}
 	public int getBookInformationLength() {
 		return getBookInformationLength;

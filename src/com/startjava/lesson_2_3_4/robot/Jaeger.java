@@ -2,7 +2,7 @@ package com.startjava.lesson_2_3.robot;
 
 public class Jaeger {
 
-    private String modelName;
+    private String modelNAME;
     private String mark;
     private double height;
     private double weight;
@@ -10,20 +10,20 @@ public class Jaeger {
 
     public Jaeger() {}
 
-    public Jaeger(String modelName, String mark, double height, double weight, int kaijuKilled) {
-        this.modelName = modelName;
+    public Jaeger(String modelNAME, String mark, double height, double weight, int kaijuKilled) {
+        this.modelNAME = modelNAME;
         this. mark = mark;
         this.height = height;
         this.weight = weight;
         this.kaijuKilled = kaijuKilled;
     }
 
-    public void setModelName(String modelName) {
-        this.modelName = modelName;
+    public void setModelNAME(String modelNAME) {
+        this.modelNAME = modelNAME;
     }
 
-    public String getModelName() {
-        return modelName;
+    public String getModelNAME() {
+        return modelNAME;
     }
 
     public void setMark(String mark) {
@@ -59,15 +59,15 @@ public class Jaeger {
     }
 
     public void walk() {
-        System.out.println(modelName + " " + "Walking");
+        System.out.println(modelNAME + " " + "Walking");
     }
 
     public void fire() {
-        System.out.println(modelName + " " + "Firing");
+        System.out.println(modelNAME + " " + "Firing");
     }
 
     public void showInfo() {
-        System.out.println("Model Name: " + modelName);
+        System.out.println("Model NAME: " + modelNAME);
         System.out.println("Mark: " + mark);
         System.out.println("Height: " + height);
         System.out.println("Weight: " + weight);

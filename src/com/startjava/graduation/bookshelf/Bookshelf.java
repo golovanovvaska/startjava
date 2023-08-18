@@ -23,18 +23,18 @@ public class Bookshelf {
 		}
 	}
 
-	public Book find(String name) {
+	public Book find(String NAME) {
 		for (int i = 0; i < booksCount; i++){
-			if (books[i].getName().equals(name)) {
+			if (books[i].getNAME().equals(NAME)) {
 				return books[i];
 			}
 		}
 		return null;
 	}
 
-	public void delete(String name) {
+	public void delete(String NAME) {
 		for (int i = 0; i < booksCount; i++) {
-			if (books[i].getName().equals(name)) {
+			if (books[i].getNAME().equals(NAME)) {
 				booksCount--;
 				int length = books[i].getBookInformationLength();
 				System.arraycopy(books,i + 1, books, i, booksCount - i);

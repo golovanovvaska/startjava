@@ -4,7 +4,7 @@ public class JaegerTest {
 
     public static void main(String[] args) {
         Jaeger saberAthena = new Jaeger();
-        saberAthena.setModelName("Saber Athena");
+        saberAthena.setModelNAME("Saber Athena");
         saberAthena.setMark("Mark-7");
         saberAthena.setHeight(76.91);
         saberAthena.setWeight(1.628);

@@ -3,7 +3,7 @@ package com.startjava.lesson_2_3_4.animal;
 public class Wolf {
 
     private String gender;
-    private String name;
+    private String NAME;
     private double weight;
     private int age;
     private String color;
@@ -16,12 +16,12 @@ public class Wolf {
         return gender;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNAME(String NAME) {
+        this.NAME = NAME;
     }
 
-    public String getName() {
-        return name;
+    public String getNAME() {
+        return NAME;
     }
 
     public void setWeight(double weight) {
