@@ -34,7 +34,6 @@ public class GuessNumber {
                     isPlayerGuesed = true;
                     break;
                 }
-
             }
            endOfAttempts = (players[0].getCurrentAttempt() == Player.ATEMPTS) &&
                    (players[1].getCurrentAttempt() == Player.ATEMPTS) &&
