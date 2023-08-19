@@ -4,10 +4,10 @@ import java.util.Scanner;
 
 public class GuessNumber {
 
-    private static final int COUNT_OF_PLAYERS = 3;
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 100;
-    private Player[] players = new Player[COUNT_OF_PLAYERS];
+    private static final int PLAYERS_COUNT = 3;
+    public static final int MIN_NUMBER = 1;
+    public static final int MAX_NUMBER = 100;
+    private Player[] players = new Player[PLAYERS_COUNT];
     private int secretNumber;
     private int round;
     Scanner scanner = new Scanner(System.in);
@@ -62,9 +62,11 @@ public class GuessNumber {
     }
 
     private boolean isGuessed(Player player) {
-        String name = player.getname();
+        String name = player.getName();
         System.out.println(name + ", введите число");
-        player.addNumber(checkNumber());
+        while (!player.addNumber(scanner.nextInt())){
+            System.out.println("Число должно быть в интервале от 1 до 100");
+        }
         int number = player.getNumber();
         if (number == secretNumber) {
             System.out.println(name + " угадал " + number + " c "
@@ -78,15 +80,6 @@ public class GuessNumber {
             System.out.println("У игрока " + name + " закончились попытки");
         }
         return false;
-    }
-
-    private int checkNumber() {
-        int number = 0;
-        while (!(number >= MIN_NUMBER && number <= MAX_NUMBER)) {
-            System.out.println("Число должно быть в интервале от 1 до 100");
-            number = scanner.nextInt();
-        }
-        return number;
     }
 
     private void printNumbers(Player player) {
@@ -114,7 +107,7 @@ public class GuessNumber {
             }
             for (Player player : players) {
                 if (player.getScore() == scores) {
-                    winner = player.getname();
+                    winner = player.getName();
                     player.resetScore();
                 }
             }

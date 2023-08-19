@@ -14,32 +14,38 @@ public class Player {
         this.name = name;
     }
 
-    public void addNumber(int number) {
-        numbers[currentAttempt] = number;
-        currentAttempt++;
+    public boolean addNumber(int number) {
+        if (number >= GuessNumber.MIN_NUMBER && number <= GuessNumber.MAX_NUMBER){
+            numbers[currentAttempt] = number;
+            currentAttempt++;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public int getNumber() {
         return numbers[currentAttempt - 1];
     }
 
-    public String getname() {
+    public String getName() {
         return name;
     }
 
     public int getCurrentAttempt() {
         return currentAttempt;
     }
+
+    public int getScore() {
+        return score;
+    }
+
     public void resetScore() {
         score = 0;
     }
 
     public void increaseScore() {
         score++;
-    }
-
-    public int getScore() {
-        return score;
     }
 
     public int[] getAll() {
