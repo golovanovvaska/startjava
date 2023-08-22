@@ -54,7 +54,7 @@ public class Player {
     public void clear() {
         if (currentAttempt > 0) {
             Arrays.fill(numbers, 0, currentAttempt, 0);
-            currentAttempt = 0;
         }
+        currentAttempt = 0;
     }
 }
