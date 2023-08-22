@@ -4,47 +4,47 @@ import java.util.Scanner;
 
 public class GuessNumber {
 
-    private static final int PLAYERS_COUNT = 3;
+    public static final int PLAYERS_COUNT = 3;
     public static final int MIN_NUMBER = 1;
     public static final int MAX_NUMBER = 100;
+    private static final int ROUNDS = 3;
     private Player[] players = new Player[PLAYERS_COUNT];
     private int secretNumber;
-    private int round;
+    private int roundCounter;
+
     Scanner scanner = new Scanner(System.in);
 
-    public GuessNumber(String name1, String name2, String name3) {
-        players[0] = new Player(name1);
-        players[1] = new Player(name2);
-        players[2] = new Player(name3);
+    public GuessNumber(String[] names) {
+        for (int i = 0; i < PLAYERS_COUNT; i++) {
+            players[i] = new Player(names[i]);
+        }
     }
 
     public void start() {
-        round++;
         shuffle();
         for (Player player : players) {
             player.clear();
         }
         secretNumber = (int) ((Math.random() * 100) + 1);
         System.out.println("Я загадал число от 1 до 100..." + secretNumber);
-        boolean endOfAttempts = false;
+        boolean isAttemptsEnd = false;
         boolean isPlayerGuesed = false;
-        while (!endOfAttempts && !isPlayerGuesed) {
+        while (!isAttemptsEnd && !isPlayerGuesed) {
             for (Player player : players) {
                 if (isGuessed(player)) {
+                    roundCounter++;
                     isPlayerGuesed = true;
                     break;
                 }
             }
-           endOfAttempts = (players[0].getCurrentAttempt() == Player.ATEMPTS) &&
-                   (players[1].getCurrentAttempt() == Player.ATEMPTS) &&
-                   (players[2].getCurrentAttempt() == Player.ATEMPTS);
+            if (roundCounter == ROUNDS) {
+                System.out.println(determineWinner(players));
+                roundCounter = 0;
+                break;
+            }
+            isAttemptsEnd = checkAttemptsEnd(players);
         }
-        for (Player player : players) {
-            printNumbers(player);
-        }
-        if (round == 3) {
-            System.out.println(printWinner(players));
-        }
+        printNumbers(players);
     }
 
     private void shuffle() {
@@ -81,17 +81,27 @@ public class GuessNumber {
         return false;
     }
 
-    private void printNumbers(Player player) {
-        int[] numbers = player.getAll();
-        for (int number : numbers) {
-            System.out.print(number + " ");
+    private boolean checkAttemptsEnd(Player[] players) {
+        for (Player player : players) {
+            if (!(player.getCurrentAttempt() == Player.ATEMPTS)) {
+                return false;
+            }
         }
-        System.out.println();
+        return true;
     }
 
-    private String printWinner(Player[] players) {
+    private void printNumbers(Player[] players) {
+        for (Player player : players) {
+            int[] numbers = player.getAll();
+            for (int number : numbers) {
+                System.out.print(number + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    private String determineWinner(Player[] players) {
         String winner = null;
-        round = 0;
             int scores = players[0].getScore();
             for (int i = 1; i < players.length; i++) {
                 if (players[i].getScore() == scores) {

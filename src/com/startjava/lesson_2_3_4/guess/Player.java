@@ -15,13 +15,12 @@ public class Player {
     }
 
     public boolean addNumber(int number) {
-        if (number >= GuessNumber.MIN_NUMBER && number <= GuessNumber.MAX_NUMBER){
+        if (number >= GuessNumber.MIN_NUMBER && number <= GuessNumber.MAX_NUMBER) {
             numbers[currentAttempt] = number;
             currentAttempt++;
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     public int getNumber() {
