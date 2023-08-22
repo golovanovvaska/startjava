@@ -10,7 +10,6 @@ public class GuessNumber {
     private static final int ROUNDS = 3;
     private Player[] players = new Player[PLAYERS_COUNT];
     private int secretNumber;
-    private int roundCounter;
 
     Scanner scanner = new Scanner(System.in);
 
@@ -22,28 +21,20 @@ public class GuessNumber {
 
     public void start() {
         shuffle();
-        for (Player player : players) {
-            player.clear();
-        }
-        secretNumber = (int) ((Math.random() * 100) + 1);
+        init();
         System.out.println("Я загадал число от 1 до 100..." + secretNumber);
-        boolean isAttemptsEnd = false;
         boolean isPlayerGuesed = false;
-        while (!isAttemptsEnd && !isPlayerGuesed) {
-            for (Player player : players) {
-                if (isGuessed(player)) {
-                    roundCounter++;
-                    isPlayerGuesed = true;
-                    break;
+        for (int i = 0; i < ROUNDS; i++) {
+            while (!hasAtempts(players) && !isPlayerGuesed) {
+                for (Player player : players) {
+                    if (isGuessed(player)) {
+                        isPlayerGuesed = true;
+                        break;
+                    }
                 }
             }
-            if (roundCounter == ROUNDS) {
-                System.out.println(determineWinner(players));
-                roundCounter = 0;
-                break;
-            }
-            isAttemptsEnd = checkAttemptsEnd(players);
         }
+        System.out.println(determineWinner(players));
         printNumbers(players);
     }
 
@@ -58,6 +49,13 @@ public class GuessNumber {
             players[random] = players[i];
             players[i] = tmp;
         }
+    }
+
+    private void init() {
+        for (Player player : players) {
+            player.clear();
+        }
+        secretNumber = (int) ((Math.random() * 100) + 1);
     }
 
     private boolean isGuessed(Player player) {
@@ -81,9 +79,9 @@ public class GuessNumber {
         return false;
     }
 
-    private boolean checkAttemptsEnd(Player[] players) {
+    private boolean hasAtempts(Player[] players) {
         for (Player player : players) {
-            if (!(player.getCurrentAttempt() == Player.ATEMPTS)) {
+            if (player.getCurrentAttempt() != Player.ATEMPTS) {
                 return false;
             }
         }
