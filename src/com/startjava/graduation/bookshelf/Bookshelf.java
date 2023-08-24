@@ -4,68 +4,71 @@ import java.util.Arrays;
 
 public class Bookshelf {
 
-    private int booksCount = 0;
-    private final Book[] BOOKS = new Book[10];
-    private int maxLength;
+    public final static int CAPACITY = 10;
+    private Book[] books = new Book[CAPACITY];
+    private int booksCount;
+    private int booksMaxLength;
 
-    public int getMaxLength() {
-        return maxLength;
+    public Book[] getAll() {
+        return Arrays.copyOf(books, booksCount);
+    }
+
+    public int getBooksMaxlength() {
+        return booksMaxLength;
+    }
+
+    public int getBooksCount() {
+        return booksCount;
     }
 
     public void add(Book book) {
-        if (booksCount < 10) {
-            BOOKS[booksCount] = book;
+        if (booksCount < CAPACITY) {
+            books[booksCount] = book;
             booksCount++;
             System.out.println("Книга сохранена");
         } else {
             System.out.println("Шкаф полон книг");
         }
-        if (book.getLength() > maxLength) {
-            maxLength = book.getLength();
-        }
+        determineBooksMaxLength(book);
     }
 
-    public Book find(String NAME) {
-        for (int i = 0; i < booksCount; i++){
-            if (BOOKS[i].getNAME().equals(NAME)) {
-                return BOOKS[i];
+    public Book find(String name) {
+        for (int i = 0; i < booksCount; i++) {
+            if (books[i].getName().equals(name)) {
+                return books[i];
             }
         }
         return null;
     }
 
-    public void delete(String NAME) {
+    public void delete(String name) {
         for (int i = 0; i < booksCount; i++) {
-            if (BOOKS[i].getNAME().equals(NAME)) {
+            if (books[i].getName().equals(name)) {
                 booksCount--;
-                int length = BOOKS[i].getLength();
-                System.arraycopy(BOOKS,i + 1, BOOKS, i, booksCount - i);
-                BOOKS[booksCount] = null;
+                int length = books[i].getLength();
+                System.arraycopy(books, i + 1, books, i, booksCount - i);
+                books[booksCount] = null;
                 System.out.println("Книга удалена");
-                if (length == maxLength) {
-                    maxLength = 0;
-                    for (Book book : BOOKS) {
-                        if (book.getLength() > maxLength) {
-                            maxLength = book.getLength();
-                        }
+                if (length == booksMaxLength) {
+                    booksMaxLength = 0;
+                    for (Book book : books) {
+                        determineBooksMaxLength(book);
                     }
                 }
             }
         }
     }
 
-    public Book[] getAll() {
-        return Arrays.copyOf(BOOKS, booksCount);
-    }
-
-    public int getCountOfBooks() {
-        return booksCount;
-    }
-
     public void clear() {
-        Arrays.fill(BOOKS, null);
+        Arrays.fill(books, null);
         booksCount = 0;
-        maxLength = 0;
+        booksMaxLength = 0;
         System.out.println("Шкаф очищен");
     }
-}    
+
+    private void determineBooksMaxLength(Book book) {
+        if (book.getLength() > booksMaxLength) {
+            booksMaxLength = book.getLength();
+        }
+    }
+}
