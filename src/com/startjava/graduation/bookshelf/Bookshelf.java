@@ -51,8 +51,8 @@ public class Bookshelf {
                 System.out.println("Книга удалена");
                 if (length == booksMaxLength) {
                     booksMaxLength = 0;
-                    for (Book book : books) {
-                        determineBooksMaxLength(book);
+                    for (int j = 0; j < booksCount; j++) {
+                        determineBooksMaxLength(books[j]);
                     }
                 }
             }

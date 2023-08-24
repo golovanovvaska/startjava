@@ -42,7 +42,7 @@ public class BookshelfTest {
     }
 
     private static int getMenuItem() {
-        String menuItem = scanner.next();
+        String menuItem = scanner.nextLine();
         switch (menuItem) {
             case "1" -> add();
             case "2" -> find();
@@ -59,8 +59,7 @@ public class BookshelfTest {
     private static void add() {
         System.out.println("Введите имя автора");
         String author = scanner.nextLine();
-        System.out.println("Введите название книги");
-        String name = scanner.nextLine();
+        String name = enterBooksName();
         System.out.println("Введите год издания");
         int year = scanner.nextInt();
         scanner.nextLine();
@@ -70,17 +69,20 @@ public class BookshelfTest {
     }
 
     private static void find() {
-        System.out.println("Введите наименование книги");
-        String name = scanner.nextLine();
+        String name = enterBooksName();
         System.out.println(bookshelf.find(name).getAllToString());
         pressEnter();
     }
 
     private static void delete() {
-        System.out.println("Введите наименование книги");
-        String name = scanner.nextLine();
+        String name = enterBooksName();
         bookshelf.delete(name);
         pressEnter();
+    }
+
+    private static String enterBooksName() {
+        System.out.println("Введите наименование книги");
+        return scanner.nextLine();
     }
 
     private static void clear() {
