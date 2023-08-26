@@ -11,22 +11,23 @@ public class BookshelfTest {
         do {
             printShelf();
             printMenu();
-        } while (getMenuItem() != 5);
+        } while (selectMenuItem() != 5);
     }
 
     private static void printShelf() {
-        if (bookshelf.getBooksCount() == 0) {
+        int countBooks = bookshelf.getCountBooks();
+        if (countBooks == 0) {
             System.out.println("Шкаф пуст. Вы можете добавить в него первую книгу");
         } else {
-            System.out.println("В шкафу книг - " + bookshelf.getBooksCount() +
-                    ", свободных полок - " + (Bookshelf.CAPACITY - bookshelf.getBooksCount()));
+            int maxLength = bookshelf.getMaxLength();
+            System.out.println("В шкафу книг - " + countBooks + ", свободных полок - "
+                    + (Bookshelf.CAPACITY - countBooks));
             Book[] books = bookshelf.getAll();
             for (Book book : books) {
-                System.out.println("|" + book.getAllToString() + " "
-                        .repeat(bookshelf.getBooksMaxlength() - book.getLength()) + "|");
-                System.out.println("|" + "-".repeat(bookshelf.getBooksMaxlength()) + "|");
+                System.out.println("|" + book.toString() + " ".repeat(maxLength - book.getLength()) + "|");
+                System.out.println("|" + "-".repeat(maxLength) + "|");
             }
-            System.out.println("|" + " ".repeat(bookshelf.getBooksMaxlength()) + "|");
+            System.out.println("|" + " ".repeat(maxLength) + "|");
         }
     }
 
@@ -41,53 +42,47 @@ public class BookshelfTest {
         System.out.println("Выберите пункт меню: ");
     }
 
-    private static int getMenuItem() {
+    private static int selectMenuItem() {
         String menuItem = scanner.nextLine();
         switch (menuItem) {
-            case "1" -> add();
-            case "2" -> find();
-            case "3" -> delete();
-            case "4" -> clear();
+            case "1" -> addBook();
+            case "2" -> findBook();
+            case "3" -> deleteBook();
+            case "4" -> clearBookshelf();
             case "5" -> {
                 return 5;
             }
             default -> System.out.println("Данного пункта меню нет в списке");
         }
+        pressEnter();
         return 0;
     }
 
-    private static void add() {
+    private static void addBook() {
         System.out.println("Введите имя автора");
         String author = scanner.nextLine();
-        String name = enterBooksName();
+        String title = enterTitle();
         System.out.println("Введите год издания");
         int year = scanner.nextInt();
         scanner.nextLine();
-        Book book = new Book(author, name, year);
-        bookshelf.add(book);
-        pressEnter();
+        bookshelf.add(new Book(author, title, year));
     }
 
-    private static void find() {
-        String name = enterBooksName();
-        System.out.println(bookshelf.find(name).getAllToString());
-        pressEnter();
+    private static void findBook() {
+        System.out.println(bookshelf.find(enterTitle()));
     }
 
-    private static void delete() {
-        String name = enterBooksName();
-        bookshelf.delete(name);
-        pressEnter();
+    private static void deleteBook() {
+        bookshelf.delete(enterTitle());
     }
 
-    private static String enterBooksName() {
+    private static String enterTitle() {
         System.out.println("Введите наименование книги");
         return scanner.nextLine();
     }
 
-    private static void clear() {
+    private static void clearBookshelf() {
         bookshelf.clear();
-        pressEnter();
     }
 
     private static void pressEnter() {

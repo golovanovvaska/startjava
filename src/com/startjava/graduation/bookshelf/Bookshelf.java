@@ -6,53 +6,53 @@ public class Bookshelf {
 
     public final static int CAPACITY = 10;
     private Book[] books = new Book[CAPACITY];
-    private int booksCount;
-    private int booksMaxLength;
+    private int countBooks;
+    private int maxLength;
 
     public Book[] getAll() {
-        return Arrays.copyOf(books, booksCount);
+        return Arrays.copyOf(books, countBooks);
     }
 
-    public int getBooksMaxlength() {
-        return booksMaxLength;
+    public int getMaxLength() {
+        return maxLength;
     }
 
-    public int getBooksCount() {
-        return booksCount;
+    public int getCountBooks() {
+        return countBooks;
     }
 
     public void add(Book book) {
-        if (booksCount < CAPACITY) {
-            books[booksCount] = book;
-            booksCount++;
+        if (countBooks < CAPACITY) {
+            books[countBooks] = book;
+            countBooks++;
             System.out.println("Книга сохранена");
+            determineMaxLength(book);
         } else {
             System.out.println("Шкаф полон книг");
         }
-        determineBooksMaxLength(book);
     }
 
-    public Book find(String name) {
-        for (int i = 0; i < booksCount; i++) {
-            if (books[i].getName().equals(name)) {
+    public Book find(String title) {
+        for (int i = 0; i < countBooks; i++) {
+            if (books[i].getTitle().equals(title)) {
                 return books[i];
             }
         }
         return null;
     }
 
-    public void delete(String name) {
-        for (int i = 0; i < booksCount; i++) {
-            if (books[i].getName().equals(name)) {
-                booksCount--;
+    public void delete(String title) {
+        for (int i = 0; i < countBooks; i++) {
+            if (books[i].getTitle().equals(title)) {
+                countBooks--;
                 int length = books[i].getLength();
-                System.arraycopy(books, i + 1, books, i, booksCount - i);
-                books[booksCount] = null;
+                System.arraycopy(books, i + 1, books, i, countBooks - i);
+                books[countBooks] = null;
                 System.out.println("Книга удалена");
-                if (length == booksMaxLength) {
-                    booksMaxLength = 0;
-                    for (int j = 0; j < booksCount; j++) {
-                        determineBooksMaxLength(books[j]);
+                if (length == maxLength) {
+                    maxLength = 0;
+                    for (int j = 0; j < countBooks; j++) {
+                        determineMaxLength(books[j]);
                     }
                 }
             }
@@ -60,15 +60,17 @@ public class Bookshelf {
     }
 
     public void clear() {
-        Arrays.fill(books, null);
-        booksCount = 0;
-        booksMaxLength = 0;
+        for (int i = 0; i < countBooks; i++) {
+            books[i] = null;
+        }
+        countBooks = 0;
+        maxLength = 0;
         System.out.println("Шкаф очищен");
     }
 
-    private void determineBooksMaxLength(Book book) {
-        if (book.getLength() > booksMaxLength) {
-            booksMaxLength = book.getLength();
+    private void determineMaxLength(Book book) {
+        if (book.getLength() > maxLength) {
+            maxLength = book.getLength();
         }
     }
 }

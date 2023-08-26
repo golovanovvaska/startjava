@@ -3,26 +3,26 @@ package com.startjava.graduation.bookshelf;
 public class Book {
 
     private String author;
-    private String name;
+    private String title;
     private int year;
     private int length;
 
-    public Book(String author, String name, int year) {
+    public Book(String author, String title, int year) {
         this.author = author;
-        this.name = name;
+        this.title = title;
         this.year = year;
-        length = getAllToString().length();
+        length = toString().length();
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getAllToString() {
-        return author + ", " + name + ", " + year;
+    public String getTitle() {
+        return title;
     }
 
     public int getLength() {
         return length;
+    }
+
+    public String toString() {
+        return author + ", " + title + ", " + year;
     }
 }
