@@ -24,7 +24,7 @@ public class BookshelfTest {
                     + (Bookshelf.CAPACITY - countBooks));
             Book[] books = bookshelf.getAll();
             for (Book book : books) {
-                System.out.println("|" + book.toString() + " ".repeat(maxLength - book.getLength()) + "|");
+                System.out.println("|" + book + " ".repeat(maxLength - book.getLength()) + "|");
                 System.out.println("|" + "-".repeat(maxLength) + "|");
             }
             System.out.println("|" + " ".repeat(maxLength) + "|");

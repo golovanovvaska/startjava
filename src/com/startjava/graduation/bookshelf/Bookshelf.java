@@ -60,9 +60,7 @@ public class Bookshelf {
     }
 
     public void clear() {
-        for (int i = 0; i < countBooks; i++) {
-            books[i] = null;
-        }
+        Arrays.fill(books, 0, countBooks, null);
         countBooks = 0;
         maxLength = 0;
         System.out.println("Шкаф очищен");
