@@ -26,13 +26,13 @@ SELECT *
 SELECT *
   FROM jaegers
  WHERE launch = (SELECT MIN(launch)
-		           FROM jaegers);
+                   FROM jaegers);
 
 \echo отобразите роботов, которые уничтожили больше всех kaiju
 SELECT *
   FROM jaegers
  WHERE kaiju_kill = (SELECT MAX(kaiju_kill)
-		               FROM jaegers);
+                       FROM jaegers);
 
 \echo отобразите средний вес роботов
 SELECT ROUND(AVG(weight) :: NUMERIC, 2) AS avg_weight
